@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <title>AATISH G|Home</title>
 	
 	<!-- Meta tag Keywords -->
@@ -439,8 +440,8 @@
 			</div>
 			<div class="col-lg-7 mt-lg-0 mt-5 contact-right">
 				<h4 class="mb-4">Get In Touch</h4>
-				<form action="#" method="post">
-					<label><i class="fa mr-2 fa-user" aria-hidden="true"></i> Name</label>
+				<form id="submit-form" action=""
+				    <label> <i class="fa mr-2 fa-user" aria-hidden="true"></i> Name </label>
 					<input type="text" name="Name" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
 					<div class="clearfix"></div>
 					<label><i class="fas mr-2 fa-envelope-open" aria-hidden="true"></i>Email</label>
@@ -540,5 +541,24 @@
 								
 			});
 	</script>
+	 <script>
+        $("#submit-form").submit((e)=>{
+            e.preventDefault()
+            $.ajax({
+                url:"https://script.google.com/macros/s/AKfycbwvMh_G6O7cK0F3ruZphWBkzckcaQeJ_PrBTJYoaVIHlt6aEA/exec",
+                data:$("#submit-form").serialize(),
+                method:"post",
+                success:function (response){
+                    alert("Form submitted successfully")
+                    location.reload()
+                    //window.location.href="https://aatishgnair.github.io/aatishg-static-website/index.html"
+                },
+                error:function (err){
+                    alert("Something Error")
+    
+                }
+            })
+        })
+    </script>
 </body>
 </html>
