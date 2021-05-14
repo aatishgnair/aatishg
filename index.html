@@ -488,22 +488,67 @@
 				</div>
 			</div>
 			<div class="col-lg-7 mt-lg-0 mt-5 contact-right">
-				<h4 class="mb-4">Get In Touch</h4>
-				<form id="submit-form" action="">
-				    <label> <i class="fa mr-2 fa-user" aria-hidden="true"></i> Name </label>
-					<input type="text" name="Name" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
-					<div class="clearfix"></div>
-					<label><i class="fas mr-2 fa-envelope-open" aria-hidden="true"></i>Email</label>
-					<input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
-					<div class="clearfix"></div>
-					<label><i class="fas mr-2 fa-phone" aria-hidden="true"></i>Phone</label>
-					<input type="text" name="Phone" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
-					<div class="clearfix"></div>
-					<label><i class="fas mr-2 fa-edit" aria-hidden="true"></i>Message</label>
-					<textarea name="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
-					<input type="submit" value="Submit">
-				</form>
-			</div>
+			<form action="https://docs.google.com/forms/d/e/1FAIpQLSeWNEPotbjQ0CPye01QpYFkLGRM963TSBsTzrOup5LYHk78Cg/formResponse"
+      target="_self"
+      id="bootstrapForm"
+      method="POST">
+    
+        <h2 class="mb-4">Get In Touch<br><small></small></h2>
+   
+
+
+    <!-- Field type: "short" id: "304509361" -->
+    <fieldset>
+        <label for="304509361"><i class="fa mr-2 fa-user" aria-hidden="true"></i>Name</label>
+        <div class="form-group">
+            <input id="1661998860" type="text" name="entry.1661998860" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" class="form-control" required>
+			<div class="clearfix"></div>
+        </div>
+    </fieldset>
+
+
+    <!-- Field type: "short" id: "350545140" -->
+    <fieldset>
+        <label for="350545140"><i class="fa mr-2 fa-user" aria-hidden="true"></i>Email</label>
+        <div class="form-group">
+            <input id="914111958" type="text" name="entry.914111958" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" class="form-control" required="">
+			<div class="clearfix"></div>
+        </div>
+    </fieldset>
+
+
+    <!-- Field type: "short" id: "1708410869" -->
+    <fieldset>
+        <label for="1708410869"><i class="fas mr-2 fa-phone" aria-hidden="true"></i>Phone Number</label>
+        <div class="form-group">
+            <input id="41484620" type="text" name="entry.41484620" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" class="form-control" required>
+			<div class="clearfix"></div>
+        </div>
+    </fieldset>
+
+
+    <!-- Field type: "paragraph" id: "307392650" -->
+    <fieldset>
+        <label for="307392650"><i class="fas mr-2 fa-edit" aria-hidden="true"></i>Message</label>
+        <div class="form-group">
+            <textarea id="1246672402" name="entry.1246672402" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}"  class="form-control" required="">Message.....</textarea>
+			<div class="clearfix"></div>
+        </div>
+    </fieldset>
+
+    <input type="hidden" name="fvv" value="1">
+    <input type="hidden" name="fbzx" value="32736094903574440">
+    <!--
+        CAVEAT: In multipages (multisection) forms, *pageHistory* field tells to google what sections we've currently completed.
+        This usually starts as "0" for the first page, then "0,1" in the second page... up to "0,1,2..N" in n-th page.
+        Keep this in mind if you plan to change this code to recreate any sort of multipage-feature in your exported form.
+        We're setting this to the total number of pages in this form because we're sending all fields from all the section together.
+    -->
+    <input type="hidden" name="pageHistory" value="0">
+
+    <input class="btn btn-primary" type="submit" value="Submit">
+</form>
+</div>
 		</div>
 	</div>
 </section>
@@ -591,25 +636,27 @@
 								
 			});
 	</script>
-	 <script>
-        $("#submit-form").submit((e)=>{
-            e.preventDefault()
-            $.ajax({
-                url:"https://script.google.com/macros/s/AKfycbwvMh_G6O7cK0F3ruZphWBkzckcaQeJ_PrBTJYoaVIHlt6aEA/exec",
-                data:$("#submit-form").serialize(),
-                method:"post",
-                success:function (response){
-                    alert("THANKS! SUCCESSFULLY SUBMITTED")
-                    location.reload()
-                    //window.location.href="https://aatishgnair.github.io/aatishg-static-website/index.html"
-                },
-                error:function (err){
-                    alert("Something Error")
-    
-                }
-            })
-        })
-    </script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
+	
+	<script>
+	$('#bootstrapForm').submit(function (event) {
+		event.preventDefault()
+		var extraData = {}
+		$('#bootstrapForm').ajaxSubmit({
+			data: extraData,
+			dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
+			error: function () {
+				// Submit of form should be successful but JSONP callback will fail because Google Forms
+				// does not support it, so this is handled as a failure.
+				//alert('Form Submitted. Thanks.')
+				// You can also redirect the user to a custom thank-you page:
+				 window.location = 'https://www.aatishgnair.com/thankyoupage.html'
+			}
+		})
+	})
+	
+	</script>
 	
 
 
